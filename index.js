@@ -9,7 +9,7 @@ const url = "https://www.nytimes.com/puzzles/spelling-bee";
 const cron = require("node-cron");
 
 const dbName =
-  process.env.DATA_BASE_URL || `postgres://localhost:5432/spelling-bee-data`;
+  process.env.DATABASE_URL || `postgres://localhost:5432/spelling-bee-data`;
 
 const Sequelize = require("sequelize");
 const db = new Sequelize(dbName, {
