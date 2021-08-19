@@ -29,6 +29,7 @@ const db = new Sequelize(
     ssl: process.env.DATABASE_URL,
     dialectOptions: {
       ssl: process.env.DATABASE_URL && {
+        rejectUnauthorized: false,
         require: true,
       },
     },
