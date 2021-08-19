@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js"
+    "start": "node index.js",
+    "start-dev": "nodemon index.js"
   },
   "keywords": [],
   "author": "",
@@ -15,6 +16,7 @@
     "node-cron": "^3.0.0",
     "nodemon": "^2.0.12",
     "pg": "^8.7.1",
+    "request": "^2.88.2",
     "request-promise": "^4.2.6",
     "sequelize": "^6.6.5"
   }
