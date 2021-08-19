@@ -14,6 +14,10 @@ const dbName =
 const Sequelize = require("sequelize");
 const db = new Sequelize(dbName, {
   logging: false,
+  //   ssl: true,
+  //   dialectOptions: {
+  //     ssl: true,
+  //   },
 });
 
 const Puzzle = db.define("puzzle", {
