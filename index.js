@@ -12,13 +12,28 @@ const dbName =
   process.env.DATABASE_URL || `postgres://localhost:5432/spelling-bee-data`;
 
 const Sequelize = require("sequelize");
-const db = new Sequelize(dbName, {
-  logging: false,
-  //   ssl: true,
-  //   dialectOptions: {
-  //     ssl: true,
-  //   },
-});
+// const db = new Sequelize(dbName, {
+//   logging: false,
+//   //   ssl: true,
+//   //   dialectOptions: {
+//   //     ssl: true,
+//   //   },
+// });
+
+const db = new Sequelize(
+  process.env.DATABASE_URL || `postgres://localhost:5432/spelling-bee-data`,
+  {
+    logging: false,
+    dialect: "postgres",
+    protocol: "postgres",
+    ssl: process.env.DATABASE_URL,
+    dialectOptions: {
+      ssl: process.env.DATABASE_URL && {
+        require: true,
+      },
+    },
+  }
+);
 
 const Puzzle = db.define("puzzle", {
   displayDate: Sequelize.STRING,
