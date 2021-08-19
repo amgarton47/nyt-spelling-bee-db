@@ -136,3 +136,5 @@ const init = async () => {
 };
 
 init();
+
+module.exports = fetchPuzzleData;
