@@ -76,6 +76,7 @@ const fetchPuzzleData = async () => {
       return beeData;
     })
     .then(async (beeData) => {
+      console.log(beeData);
       await Puzzle.findOrCreate({
         // date in YYYY-MM-DD format
         where: { printDate: year + "-" + month + "-" + date },
