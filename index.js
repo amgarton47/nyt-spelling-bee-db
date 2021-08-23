@@ -138,4 +138,4 @@ const init = async () => {
 
 init();
 
-module.exports = fetchPuzzleData;
+module.exports = { fetchPuzzleData, db, Puzzle };
