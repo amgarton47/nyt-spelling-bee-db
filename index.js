@@ -44,7 +44,6 @@ const Puzzle = db.define("puzzle", {
   validLetters: Sequelize.ARRAY(Sequelize.CHAR),
   pangrams: Sequelize.ARRAY(Sequelize.STRING),
   answers: Sequelize.ARRAY(Sequelize.STRING),
-  nytId: Sequelize.INTEGER,
 });
 
 // current date, month, and year
