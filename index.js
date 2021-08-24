@@ -81,7 +81,6 @@ const fetchPuzzleData = async () => {
         where: { printDate: year + "-" + month + "-" + date },
         defaults: {
           ...beeData.today,
-          nytId: beeData.today.id,
         },
       });
       //   Puzzle.create({ ...beeData.yesterday, nytId: beeData.yesterday.id });
