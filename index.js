@@ -75,14 +75,18 @@ const fetchPuzzleData = async () => {
       return beeData;
     })
     .then(async (beeData) => {
-      console.log(beeData);
-      await Puzzle.findOrCreate({
-        // date in YYYY-MM-DD format
-        where: { printDate: year + "-" + month + "-" + date },
-        defaults: {
-          ...beeData.today,
-        },
-      });
+      try {
+        console.log(beeData);
+        await Puzzle.findOrCreate({
+          // date in YYYY-MM-DD format
+          where: { printDate: year + "-" + month + "-" + date },
+          defaults: {
+            ...beeData.today,
+          },
+        });
+      } catch (err) {
+        console.log(err);
+      }
       //   Puzzle.create({ ...beeData.yesterday, nytId: beeData.yesterday.id });
     })
     .catch((err) => console.log(err));
@@ -118,14 +122,18 @@ app.get("*", (err, req, res, next) => {
 });
 
 const init = async () => {
-  await db.sync();
+  try {
+    await db.sync();
+    const job = cron.schedule("0 3 * * *", () => fetchPuzzleData());
+
+    const server = app.listen(PORT, () => {
+      console.log(`Listening on port ${PORT}`);
+    });
+  } catch (err) {
+    console.log(err);
+  }
+
   //   fetchPuzzleData();
-  const job = cron.schedule("0 3 * * *", () => fetchPuzzleData());
-
-  const server = app.listen(PORT, () => {
-    console.log(`Listening on port ${PORT}`);
-  });
-
   //   setTimeout(() => {
   //     server.close(() => {
   //       console.log("server shutting down");
