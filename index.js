@@ -124,6 +124,7 @@ app.get("*", (err, req, res, next) => {
 const init = async () => {
   try {
     await db.sync();
+    fetchPuzzleData();
     const job = cron.schedule("0 3 * * *", () => fetchPuzzleData());
 
     const server = app.listen(PORT, () => {
@@ -133,7 +134,6 @@ const init = async () => {
     console.log(err);
   }
 
-  //   fetchPuzzleData();
   //   setTimeout(() => {
   //     server.close(() => {
   //       console.log("server shutting down");
