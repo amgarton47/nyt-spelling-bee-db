@@ -1,8 +1,13 @@
-const { fetchPuzzleData } = require("./index");
+const { fetchPuzzleData, db } = require("./index");
 
 const doTask = async () => {
-  console.log("fetching today's data");
-  await fetchPuzzleData();
+  try {
+    console.log("fetching today's data");
+    await db.sync();
+    await fetchPuzzleData();
+  } catch (err) {
+    console.log(err);
+  }
 };
 
 doTask();
