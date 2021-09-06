@@ -96,6 +96,11 @@ app.get("/", (req, res, next) => {
   res.send('Visit "/{YYYY-MM-DD}" for that day\'s spelling bee data!');
 });
 
+app.get("/all", async (req, res, next) => {
+  const puzzles = await Puzzle.findAll();
+  res.send(puzzles);
+});
+
 app.get("/:date", async (req, res, next) => {
   const date = req.params.date;
 
